@@ -2,21 +2,23 @@ import React from "react";
 import styled from 'styled-components';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserContext from "../src/contexts/Usercontext";
 import { useContext } from "react";
 
+
 export default function Login() {
     const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
+    const [password, setPassword] = useState("");
     const { user, setUser } = useContext(UserContext);
-   
+    const navigate = useNavigate(); 
+    
     function logar() {
         const body = {
                 email: email,
-                password: senha
+                password: password
             }
-            const promise = axios.post("http://localhost:5000/login", body);
+            const promise = axios.post("http://localhost:5000/sign-in", body);
             promise
             .then(res =>{
                 console.log("deu bom")
@@ -26,7 +28,8 @@ export default function Login() {
                     name: res.data.name,
                     token: res.data.token,
                 },
-            );  
+            );
+            navigate('/initialPage');
             })
             .catch(err => {
                 console.log(err);
@@ -38,15 +41,12 @@ export default function Login() {
     return (
         <BodyLogin>
             <h2> MyWallet</h2>
-            <div className="infosLogin">
-                
                 <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                <input type="text" value={senha} onChange={(e) => setSenha(e.target.value)} placeholder="Senha" />
+                <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Senha" />
                 <button onClick={logar}> Entrar</button> 
                <Link style={{ textDecoration: 'none' }} to={`/cadastro`} >
-                    <h3> Não tem uma conta? Cadastre-se</h3>
+                    <h3> Primeira vez? Cadastre-se</h3>
                </Link>
-            </div>
         </BodyLogin>
     )
 }
