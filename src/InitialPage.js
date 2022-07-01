@@ -12,7 +12,10 @@ import plus from "./assets/plus.png"
 export default function InitialPage() {
 const register = 1 
 const { user, setUser } = useContext(UserContext);
-
+const navigate = useNavigate(); 
+function teste() {
+    console.log(user.email)
+}
     return (
         <div className="bodyinitialPage">
             <div className="footer">
@@ -24,11 +27,11 @@ const { user, setUser } = useContext(UserContext);
             {(register !== 0) && (<div className="records"><h3> HÁ REGISTROS!!!!</h3></div>)}
             <div className="cashFlow">
                  <div className="input">
-                    <img src={plus} />
+                    <img onClick={() => navigate('/input')} src={plus} />
                     <h4> Nova entrada</h4>
                 </div>
                 <div className="output">
-                    <img src={minus} />
+                    <img onClick={() => navigate('/output')} src={minus} />
                     <h4> Nova saída</h4>
                 </div>
             </div>  

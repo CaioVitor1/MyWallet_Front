@@ -27,6 +27,7 @@ export default function Login() {
                 {   
                     name: res.data.name,
                     token: res.data.token,
+                    email: res.data.email
                 },
             );
             navigate('/initialPage');

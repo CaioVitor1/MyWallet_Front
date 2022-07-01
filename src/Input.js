@@ -9,15 +9,18 @@ import { useContext } from "react";
 export default function Input() {
     const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
+    const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate(); 
 
     function sendInput() {
         console.log("Opa dindim");
         const body = {
             value: value,
             description: description,
-            type: "input"
+            type: "input",
+            email: user.email
         }
-        const promise = axios.post("http://localhost:5000/input", body);
+        const promise = axios.post("http://localhost:5000/cashFlux", body);
         promise
         .then(res =>{
             console.log("deu bom")
@@ -29,8 +32,6 @@ export default function Input() {
             console.log("deu ruim")
             alert("Não foi possível enviar os valores!")
         })
-
-
     }
 
     return (

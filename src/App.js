@@ -12,6 +12,7 @@ export default function App() {
     const [user, setUser] = useState({
         name: "",
         token: "",
+        email: ""
     })
     
     return (
