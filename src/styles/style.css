@@ -6,9 +6,13 @@ body{
     font-family: 'Raleway', sans-serif;
     box-sizing: border-box;
 }
+/* Initial Page*/
 .bodyinitialPage {
     background-color: #A328D6;
     padding: 25px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .footer {
     display: flex;
@@ -22,7 +26,7 @@ body{
     line-height: 31px;
     color: #FFFFFF; 
 }
-.records {
+.recordsEmpty {
     margin-top: 22px;
     background-color: white;
     width: 326px;
@@ -33,7 +37,7 @@ body{
     border-radius: 5px;
     margin-bottom: 10px;
 }
-.records h3{
+.recordsEmpty h3{
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 400;
@@ -76,6 +80,88 @@ body{
     left: 25px;
     top: 537px;
     border-radius: 5px;
+}
+.records{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 22px;
+    background-color: white;
+    width: 326px;
+    height: 446px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding-top: 25px;
+}
+.register{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+}
+.left {
+    display: flex;
+}
+.register h3{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #C6C6C6;
+    margin-right: 10px;
+}
+.register h4{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;  
+}
+.outputValue{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    color: #C70000;
+    padding-right: 10px;
+}
+.inputValue{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    color: #03AC00;
+    padding-right: 10px;
+}
+.balance {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content:space-between;
+    width: 90%;
+    padding-left: 15px;
+}
+.balance h3{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20px;
+    color: #000000;
+}
+.balance h4{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+    text-align: right;
+    color: #03AC00;
 }
 
 /*Input */
@@ -122,11 +208,6 @@ body{
     margin-bottom: 36px;
 }
 
-
-
-
-
-
 /*Output */
 .outputBody{
     background-color: #A328D6;
@@ -170,3 +251,4 @@ body{
     color: #FFFFFF;
     margin-bottom: 36px;
 }
+
