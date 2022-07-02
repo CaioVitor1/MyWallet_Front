@@ -5,11 +5,14 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import UserContext from "./contexts/Usercontext";
 import { useContext } from "react";
+import dayjs from "dayjs";
 
 export default function Output() {
     const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
     const { user, setUser } = useContext(UserContext);
+    let time = dayjs().format("'DD/MM'")
+
     const navigate = useNavigate(); 
 
     function sendOutput() {
@@ -18,7 +21,8 @@ export default function Output() {
             value: value,
             description: description,
             type: "output",
-            email: user.email
+            email: user.email,
+            time: time
         }
         const promise = axios.post("http://localhost:5000/cashFlux", body);
         promise

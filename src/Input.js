@@ -13,14 +13,16 @@ export default function Input() {
     const [description, setDescription] = useState("");
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate(); 
-
+    let time = dayjs().format("'DD/MM'")
+    
     function sendInput() {
         console.log("Opa dindim");
         const body = {
             value: value,
             description: description,
             type: "input",
-            email: user.email
+            email: user.email,
+            time: time
         }
         const promise = axios.post("http://localhost:5000/cashFlux", body);
         promise

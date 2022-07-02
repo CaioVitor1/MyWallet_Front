@@ -154,15 +154,6 @@ body{
     line-height: 20px;
     color: #000000;
 }
-.balance h4{
-    font-family: 'Raleway';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 20px;
-    text-align: right;
-    color: #03AC00;
-}
 
 /*Input */
 .inputBody{
