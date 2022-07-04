@@ -10,16 +10,48 @@ import minus from "./assets/minus.png"
 import plus from "./assets/plus.png"
 
 
-function RenderBills({value, description, type, time}) {
-   
+function RenderBills({value, description, type, time, id, email}) {
+    let valor = parseFloat(Math.abs(value).toFixed(2))
+    
+    function teste() {
+        console.log(id)
+        console.log(email)
+        const promise = axios.delete(`https://mywalletcv.herokuapp.com/deletecash/${id}`, {
+        headers: {
+          email: email
+        }
+      })
+      promise
+        .then(res =>{
+            console.log(res.data);
+        })
+      .catch(err => {
+        console.error('Não foi possível apagar o item!');
+        console.error(err);
+      })
+    }
+
+
     return (
         <Register>
                 <Left>
                     <h3>{time}</h3>
                     <h4>{description}</h4>
                 </Left>
-                {(type === "input") && (<InputValue>{value}</InputValue>)}   
-                {(type === "output") && (<OutputValue>{value}</OutputValue>)}     
+                
+                    {(type === "input") && (
+                        <Values>
+                            <InputValue>{valor} </InputValue>
+                            <h5 onClick={teste}> x </h5>
+                        </Values>
+                    )}  
+                    {(type === "output") && (
+                        <Values>
+                            <OutputValue>{valor}</OutputValue>
+                            <h5 onClick={teste}> x </h5>
+                        </Values>
+                    )}    
+                 
         </Register>
     )
 }
@@ -31,6 +63,7 @@ const [bills, setBills] = useState([]);
 const [totalBalance, setTotalBalance] = useState(0);
 let total = 0;
 
+
     useEffect(() => {
         const config = {
             headers: {
@@ -38,7 +71,7 @@ let total = 0;
 
             }
         }
-        const promise = axios.get("http://localhost:5000/cashFlux", config)
+        const promise = axios.get("https://mywalletcv.herokuapp.com/cashFlux", config)
         promise
         .then(res =>{
             console.log(res.data);
@@ -53,16 +86,13 @@ let total = 0;
     
     useEffect(() => {
         for(let i = 0; i < bills.length; i++) {
-            let valor = parseFloat(bills[i].value)
+            let valor = parseFloat(Math.abs(bills[i].value).toFixed(2))
             if(bills[i].type === "input") {
-                total += valor
-            } else if(bills[i].type === "output" && valor < 0) {
                 total += valor
             }
             else {
                 total -= valor
             }
-            console.log("O valor é " + total)
         }
         setTotalBalance(total) 
     })    
@@ -91,7 +121,7 @@ let total = 0;
 
             {(bills.length === 0) && (<RecordsEmpty><h3> Não há registros de entrada e saída</h3></RecordsEmpty>)}
             {(bills.length !== 0) && (<Records>
-                {bills.map( (data) => <RenderBills time={data.time} value={data.value} description={data.description} type={data.type}  />) }
+                {bills.map( (data) => <RenderBills email={data.email} id={data._id} time={data.time} value={data.value} description={data.description} type={data.type}  />) }
                
                 <Balance>
                     <h3>SALDO</h3>
@@ -259,5 +289,18 @@ const Balance = styled.div`
         font-size: 17px;
         line-height: 20px;
         color: #000000;
+    }
+`
+const Values = styled.div`
+        display: flex;
+    h5{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        color: #C6C6C6;
+        margin: 0 7px;
     }
 `

@@ -19,7 +19,7 @@ export default function Cadastro() {
             repeatPassword
         }
         console.log(body)
-        const promise = axios.post("http://localhost:5000/sign-up", body)
+        const promise = axios.post("https://mywalletcv.herokuapp.com/sign-up", body)
         promise
         .then(res => {
             console.log(res.data);
@@ -37,7 +37,7 @@ export default function Cadastro() {
                 <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
                 <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="senha" />
                 <input type="text" value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)} placeholder="Confirme a senha" />
-                <button onClick={cadastrar}> Entrar</button> 
+                <button onClick={cadastrar}> Cadastrar</button> 
                <Link style={{ textDecoration: 'none' }} to={`/cadastro`} >
                     <h3> Já tem uma conta? Entre agora</h3>
                </Link>

@@ -18,7 +18,7 @@ export default function Login() {
                 email: email,
                 password: password
             }
-            const promise = axios.post("http://localhost:5000/sign-in", body);
+            const promise = axios.post("https://mywalletcv.herokuapp.com/sign-in", body);
             promise
             .then(res =>{
                 console.log("deu bom")

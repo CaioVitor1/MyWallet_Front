@@ -24,7 +24,7 @@ export default function Input() {
             email: user.email,
             time: time
         }
-        const promise = axios.post("http://localhost:5000/cashFlux", body);
+        const promise = axios.post("https://mywalletcv.herokuapp.com/cashFlux", body);
         promise
         .then(res =>{
             console.log("deu bom")
