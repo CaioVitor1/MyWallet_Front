@@ -40,7 +40,7 @@ export default function Output() {
 
     return (
         <OutputBody>
-            <h2> Nova entrada</h2>
+            <h2> Nova saída</h2>
             <input type="text" value={value} onChange={(e) => setValue(e.target.value)} placeholder="Valor" />
             <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Descrição" />
             <button onClick={sendOutput}> Salvar saída</button> 

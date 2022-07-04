@@ -12,26 +12,6 @@ import plus from "./assets/plus.png"
 
 function RenderBills({value, description, type, time, id, email}) {
     let valor = parseFloat(Math.abs(value).toFixed(2))
-    
-    function teste() {
-        console.log(id)
-        console.log(email)
-        const promise = axios.delete(`https://mywalletcv.herokuapp.com/deletecash/${id}`, {
-        headers: {
-          email: email
-        }
-      })
-      promise
-        .then(res =>{
-            console.log(res.data);
-        })
-      .catch(err => {
-        console.error('Não foi possível apagar o item!');
-        console.error(err);
-      })
-    }
-
-
     return (
         <Register>
                 <Left>
@@ -42,13 +22,13 @@ function RenderBills({value, description, type, time, id, email}) {
                     {(type === "input") && (
                         <Values>
                             <InputValue>{valor} </InputValue>
-                            <h5 onClick={teste}> x </h5>
+                            <h5> x </h5>
                         </Values>
                     )}  
                     {(type === "output") && (
                         <Values>
                             <OutputValue>{valor}</OutputValue>
-                            <h5 onClick={teste}> x </h5>
+                            <h5> x </h5>
                         </Values>
                     )}    
                  
