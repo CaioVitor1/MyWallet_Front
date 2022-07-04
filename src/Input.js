@@ -39,12 +39,55 @@ export default function Input() {
     }
 
     return (
-        <div className="inputBody">
+        <InputBody>
             <h2> Nova entrada</h2>
             <input type="text" value={value} onChange={(e) => setValue(e.target.value)} placeholder="Valor" />
             <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Descrição" />
             <button onClick={sendInput}> Salvar entrada</button> 
-        </div>
+        </InputBody>
        
     )
 }
+
+const InputBody = styled.div`
+        background-color: #A328D6;
+        padding: 25px 24px;
+        padding-bottom: 320px;
+    h2{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 31px;
+        color: #FFFFFF;
+        margin-bottom: 40px;
+    }
+    input {
+        width: 326px;
+        height: 58px;
+        left: 25px;
+        top: 96px;
+        background: #FFFFFF;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        color: #000000; 
+    }
+    button {
+        width: 333px;
+        height: 46px;
+        background: #8A2BE2;
+        border-radius: 5px;
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 23px;
+        color: #FFFFFF;
+        margin-bottom: 36px;
+    }
+`

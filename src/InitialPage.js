@@ -13,14 +13,14 @@ import plus from "./assets/plus.png"
 function RenderBills({value, description, type, time}) {
    
     return (
-        <div className="register">
-                <div className="left">
+        <Register>
+                <Left>
                     <h3>{time}</h3>
                     <h4>{description}</h4>
-                </div>
-                {(type === "input") && (<h5 className="inputValue">{value}</h5>)}   
-                {(type === "output") && (<h5 className="outputValue">{value}</h5>)}     
-        </div>
+                </Left>
+                {(type === "input") && (<InputValue>{value}</InputValue>)}   
+                {(type === "output") && (<OutputValue>{value}</OutputValue>)}     
+        </Register>
     )
 }
 
@@ -83,32 +83,181 @@ let total = 0;
     }
 
     return (
-        <div className="bodyinitialPage">
-            <div className="footer">
+        <BodyinitialPage>
+            <Footer>
                 <h2> Olá, {user.name}</h2>
                 <img onClick={logout} src={vector} />
-            </div>
+            </Footer>
 
-            {(bills.length === 0) && (<div className="recordsEmpty"><h3> Não há registros de entrada e saída</h3></div>)}
-            {(bills.length !== 0) && (<div className="records">
+            {(bills.length === 0) && (<RecordsEmpty><h3> Não há registros de entrada e saída</h3></RecordsEmpty>)}
+            {(bills.length !== 0) && (<Records>
                 {bills.map( (data) => <RenderBills time={data.time} value={data.value} description={data.description} type={data.type}  />) }
                
-                <div className="balance">
+                <Balance>
                     <h3>SALDO</h3>
-                   {(totalBalance > 0) && (<h4 className="inputValue">{totalBalance}</h4>)} 
-                   {(totalBalance < 0) && (<h4 className="outputValue">{totalBalance}</h4>)} 
-                </div>
-                </div>)}
-            <div className="cashFlow">
-                 <div className="input">
+                   {(totalBalance >= 0) && (<InputValue>{totalBalance}</InputValue>)} 
+                   {(totalBalance < 0) && (<OutputValue>{totalBalance}</OutputValue>)} 
+                </Balance>
+                </Records>)}
+            <CashFlow>
+                 <Input>
                     <img onClick={() => navigate('/input')} src={plus} />
                     <h4> Nova entrada</h4>
-                </div>
-                <div className="output">
+                </Input>
+                <Output>
                     <img onClick={() => navigate('/output')} src={minus} />
                     <h4> Nova saída</h4>
-                </div>
-            </div>  
-        </div>
+                </Output>
+            </CashFlow>  
+        </BodyinitialPage>
     )
 }
+
+const BodyinitialPage = styled.div`
+        background-color: #A328D6;
+        padding: 25px 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+`
+const Footer = styled.div`
+        display: flex;
+        justify-content: space-between;
+    h2{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 31px;
+        color: #FFFFFF;
+    }
+`
+const RecordsEmpty = styled.div`
+        margin-top: 22px;
+        background-color: white;
+        width: 326px;
+        height: 446px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    h3{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        text-align: center;
+        color: #868686;
+    }
+`
+
+const CashFlow = styled.div`
+        display: flex;
+    h4{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 20px;
+        color: #FFFFFF;
+        margin-left: 10px;
+        margin-top: 47px;
+        display: flex;
+    }
+    img {
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+`
+const Input = styled.div`
+        background: #8A2BE2;
+        width: 155px;
+        height: 114px;
+        left: 25px;
+        top: 537px;
+        border-radius: 5px;
+        margin-right: 15px;
+`
+const Output = styled.div`
+        background: #8A2BE2;
+        width: 155px;
+        height: 114px;
+        left: 25px;
+        top: 537px;
+        border-radius: 5px;
+`
+const Records = styled.div`
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin-top: 22px;
+        background-color: white;
+        width: 326px;
+        height: 446px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding-top: 25px;
+`
+const Register = styled.div`
+        display: flex;
+        justify-content: space-between;
+        padding-left: 15px;
+    h3{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #C6C6C6;
+        margin-right: 10px;
+    }
+    h4{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #000000;  
+    }
+`
+const Left = styled.div`
+        display: flex;
+`
+const OutputValue = styled.p`
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: right;
+        color: #C70000;
+        padding-right: 10px;
+`
+const InputValue = styled.p`
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: right;
+        color: #03AC00;
+        padding-right: 10px;
+`
+const Balance = styled.div`
+        position: absolute;
+        bottom: 10px;
+        display: flex;
+        justify-content:space-between;
+        width: 90%;
+        padding-left: 15px;
+    h3{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 20px;
+        color: #000000;
+    }
+`
